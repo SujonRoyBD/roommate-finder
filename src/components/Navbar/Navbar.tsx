@@ -1,21 +1,22 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Navbar = () => {
     return (
-        <div className='bg-[#FFD6BA] py-5 sticky  z-50'>
+        <div className='bg-orange-500 py-5 sticky top-0 z-50'>
            <div className='flex justify-between px-20 '>
-            <div className='text-white'>
+            <Link href="/home"><div className='text-white'>
                 Roommate Lagbe
-            </div>
+            </div></Link>
             <div className='flex gap-8 text-white'>
-                <p>Home</p>
-                <p>All Roommate</p>
-                <p>About Us</p>
-                <p>Contact</p>
+                <Link href="/home">Home</Link>
+                <Link href="/findroommate"><p>All Roommates</p></Link>
+                <Link href="/aboutroommate">About Us</Link>
+                <Link href="/contact-us">Contact</Link>
             </div>
             <div className='flex gap-3'>
-                <button className='border border-black text-white px-3 py-1 shadow-lg rounded-sm'>Login</button>
-                <button className='border border-black text-white px-3 py-1 shadow-lg rounded-sm'>Sing Up</button>
+                <Link href="/login"><button className='border border-white text-white px-3 py-1 shadow-lg rounded-sm'>Login</button></Link>
+                 <Link href="/singup"><button className='border border-white text-white px-3 py-1 shadow-lg rounded-sm'>SingUp</button></Link>
             </div>
            </div>
         </div>

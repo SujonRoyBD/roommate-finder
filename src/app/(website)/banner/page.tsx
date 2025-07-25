@@ -4,20 +4,19 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+// import "swiper/css/pagination";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
-
+import { CiLocationOn } from "react-icons/ci";
 const Banner = () => {
   const slides = [
-    { img: "https://swiperjs.com/demos/images/nature-1.jpg", title: "Dhaka" },
-    { img: "https://swiperjs.com/demos/images/nature-2.jpg", title: "Sylhet" },
-    { img: "https://swiperjs.com/demos/images/nature-3.jpg", title: "Rangpur" },
-    { img: "https://swiperjs.com/demos/images/nature-4.jpg", title: "Cox's Bazar" },
-    { img: "https://swiperjs.com/demos/images/nature-5.jpg", title: "Chittagong" },
-    { img: "https://swiperjs.com/demos/images/nature-6.jpg", title: "Barishal" },
-    { img: "https://swiperjs.com/demos/images/nature-7.jpg", title: "Khulna" },
-    { img: "https://swiperjs.com/demos/images/nature-8.jpg", title: "Rajshahi" },
-    { img: "https://swiperjs.com/demos/images/nature-9.jpg", title: "Mymensingh" },
+    { img: "/assets/location/dhaka.jpg", title: "Dhaka" },
+    { img: "/assets/location/rangpure.jpg", title: "Sylhet" },
+    { img: "/assets/location/coxbazar.jpg", title: "Cox's Bazar" },
+    { img: "/assets/location/banani.jpg", title: "Chittagong" },
+    { img: "/assets/location/barishal.jpg", title: "Barishal" },
+    { img: "/assets/location/gulshan.jpg", title: "Khulna" },
+    { img: "/assets/location/khulna.jpg", title: "Rajshahi" },
+    
   ];
 
   return (
@@ -45,8 +44,8 @@ const Banner = () => {
           delay: 2000,
           disableOnInteraction: false,
         }}
-        pagination={{ clickable: true }}
-        modules={[EffectCoverflow, Pagination, Autoplay]}
+        // pagination={{ clickable: true }}
+        modules={[EffectCoverflow,  Autoplay]}
         className="w-full pb-12"
       >
         {slides.map((slide, index) => (
@@ -58,7 +57,7 @@ const Banner = () => {
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-orange-600 text-white px-5 py-2 rounded shadow-lg flex items-center gap-2 text-lg font-semibold">
-                
+                <CiLocationOn />
                 {slide.title}
               </div>
             </div>

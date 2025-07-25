@@ -5,7 +5,7 @@ import { AiTwotoneDollar } from "react-icons/ai";
 import { TiDevicePhone } from "react-icons/ti";
 import { MdOutlineBedroomParent } from "react-icons/md";
 import { MdOutlineLiving } from "react-icons/md";
-
+import Link from 'next/link';
 const data =[
     {
         id:1,
@@ -26,7 +26,7 @@ const data =[
         city:"Living in the city..."
     },
     {
-        id:1,
+        id:3,
         location:"Banani,Dhaka",
         title:"Search. Match. Move in. Roommate finding made simple.",
         rent:"Rent Amount: 8000",
@@ -35,7 +35,7 @@ const data =[
         city:"Living in the city..."
     },
     {
-        id:1,
+        id:"4",
         location:"Rangpure",
         title:"Search. Match. Move in. Roommate finding made simple.",
         rent:"Rent Amount: 8000",
@@ -44,7 +44,7 @@ const data =[
         city:"Living in the city..."
     },
     {
-        id:1,
+        id:"5",
         location:"Chittagong",
         title:"Search. Match. Move in. Roommate finding made simple.",
         rent:"Rent Amount: 8000",
@@ -53,7 +53,7 @@ const data =[
         city:"Living in the city..."
     },
     {
-        id:1,
+        id:"6",
         location:"Barisal",
         title:"Search. Match. Move in. Roommate finding made simple.",
         rent:"Rent Amount: 8000",
@@ -93,7 +93,9 @@ const FindRoommate = () => {
                             <MdOutlineLiving />
                         <p>{item.city}</p>
                         </div>
+                       <Link href={`/viewroome/${item.id}`}>
                         <div className="py-6"><button className="px-3 py-1 rounded-md border border-black ">VIEW DETAILS</button></div>
+                       </Link>
                        </div>
                      </div>
                     </div>
