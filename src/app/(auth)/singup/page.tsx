@@ -1,20 +1,22 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
+import toast from "react-hot-toast"
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [photoFile, setPhotoFile] = useState<File | null>(null)
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    photoURL: "",
     password: "",
   })
 
@@ -26,14 +28,32 @@ export default function SignUp() {
     }))
   }
 
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setPhotoFile(file)
+      setImagePreview(URL.createObjectURL(file)) // ✅ লোকাল preview দেখানোর জন্য
+    }
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+
+    const { username, email, password } = formData
+    if (!username || !email || !password || !photoFile) {
+      toast.error("❌ Please fill in all fields and select a photo!")
+      return
+    }
+
+    // ✅ শুধু ফ্রন্টএন্ড preview - backend থাকলে FormData পাঠাতে হয়
+    toast.success("✅ Successfully Signed Up!")
+    console.log("Form Data:", formData)
+    console.log("Uploaded Image File:", photoFile)
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: "#E8C4A0" }}>
-      <div className="w-full max-w-md space-y-6">
+    <div className="flex items-center justify-center p-4" style={{ backgroundColor: "[#FED16A]" }}>
+      <div className="w-full max-w-md space-y-6 bg-[#FFD6BA] px-5 py-4 rounded-xl">
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold text-gray-800">SignUp Your Account</h1>
@@ -46,68 +66,43 @@ export default function SignUp() {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* User Name */}
           <div className="space-y-2">
-            <Label htmlFor="username" className="text-gray-800 font-medium">
-              User Name
-            </Label>
-            <Input
+            <Label htmlFor="username">User Name</Label>
+            <Input className=" border-2"
               id="username"
               name="username"
               type="text"
               placeholder="User Name"
               value={formData.username}
               onChange={handleInputChange}
-              className="h-12 bg-white/80 border-0 rounded-lg placeholder:text-gray-400 text-gray-700"
               required
             />
           </div>
 
-          {/* Email Address */}
+          {/* Email */}
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-gray-800 font-medium">
-              Email address
-            </Label>
-            <Input
+            <Label htmlFor="email">Email Address</Label>
+            <Input className=" border-2"
               id="email"
               name="email"
               type="email"
               placeholder="Email address"
               value={formData.email}
               onChange={handleInputChange}
-              className="h-12 bg-white/80 border-0 rounded-lg placeholder:text-gray-400 text-gray-700"
               required
-            />
-          </div>
-
-          {/* Photo URL */}
-          <div className="space-y-2">
-            <Label htmlFor="photoURL" className="text-gray-800 font-medium">
-              photoURL
-            </Label>
-            <Input
-              id="photoURL"
-              name="photoURL"
-              type="url"
-              placeholder="photoURL"
-              value={formData.photoURL}
-              onChange={handleInputChange}
-              className="h-12 bg-white/80 border-0 rounded-lg placeholder:text-gray-400 text-gray-700"
             />
           </div>
 
           {/* Password */}
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-gray-800 font-medium">
-              Password
-            </Label>
+            <Label htmlFor="password">Password</Label>
             <div className="relative">
-              <Input
+              <Input className=" border-2"
                 id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className="h-12 bg-white/80 border-0 rounded-lg placeholder:text-gray-400 text-gray-700 pr-12"
                 required
               />
               <button
@@ -120,12 +115,28 @@ export default function SignUp() {
             </div>
           </div>
 
-          {/* Submit Button */}
-          <Button
-            type="submit"
-            className="w-full h-12 text-white font-medium rounded-lg mt-6"
-            style={{ backgroundColor: "#D2691E" }}
-          >
+          {/* Image Upload */}
+          <div className="space-y-2">
+            <Label htmlFor="photo">Upload Photo</Label>
+            <Input className=" border-2"
+              id="photo"
+              name="photo"
+              type="file"
+              accept="image/*"
+              onChange={handlePhotoChange}
+              required
+            />
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="w-24 h-24 object-cover rounded-full mt-2 border mx-auto"
+              />
+            )}
+          </div>
+
+          {/* Submit */}
+          <Button type="submit" className="w-full h-12 text-white font-medium mt-4" style={{ backgroundColor: "#D2691E" }}>
             Sign Up
           </Button>
         </form>

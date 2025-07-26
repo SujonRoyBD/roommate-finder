@@ -26,8 +26,8 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: "#FFD6BA" }}>
-      <div className="w-full max-w-md space-y-6">
+    <div className="flex items-center justify-center p-4 pb-2" style={{ backgroundColor: "[#FED16A]" }}>
+      <div className="w-full max-w-md space-y-6 bg-[#FFD6BA]  px-5 py-4 rounded-xl">
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold text-slate-800">Login to Your Account</h1>

@@ -3,7 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { Poppins } from 'next/font/google';
-
+import { Toaster } from 'react-hot-toast';
+import ScrollToTopComponents from "@/components/common/ScrollToTopComponents";
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'], // আপনি যেসব weight চান
@@ -25,11 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`{poppins.variable} antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
         <Navbar/>
         {children}
+        <Toaster /> 
         <Footer/>
+        <ScrollToTopComponents/>
       </body>
     </html>
   );

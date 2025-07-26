@@ -28,7 +28,7 @@ const ContactUs = () => {
 
   return (
     <div className="md:px-20 mx-auto  p-6 rounded-xl md:py-20">
-    <div className="bg-[#FFD6BA] px-10 w-[340px] md:w-full lg:w-full">
+    <div className="bg-[#FFD6BA] rounded px-12 w-[360px]  md:w-full lg:w-full">
           <h2 className="text-2xl font-bold mb-4 text-center py-4">Contact Us</h2>
       <form onSubmit={handleSubmit} className="space-y-4 w-full">
         {/* Name */}

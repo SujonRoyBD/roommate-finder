@@ -33,8 +33,8 @@ const data = [
 
 const AboutRoommate = () => {
   return (
-    <div className="px-8 md:px-20 rounded-lg">
-      <div className="bg-[#FFD6BA] px-5">
+    <div className="px-8 md:px-20 rounded-lg py-">
+      <div className="bg-[#FFD6BA] rounded-xl px-5">
         <p className="text-2xl font-bold text-center py-5">
           About Roommate Lagbe
         </p>

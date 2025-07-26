@@ -5,8 +5,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 // import "swiper/css/pagination";
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
+import { EffectCoverflow,  Autoplay } from "swiper/modules";
 import { CiLocationOn } from "react-icons/ci";
+import Image from "next/image";
 const Banner = () => {
   const slides = [
     { img: "/assets/location/dhaka.jpg", title: "Dhaka" },
@@ -50,9 +51,11 @@ const Banner = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index} className="relative">
-            <img
+            <Image
               src={slide.img}
               alt={slide.title}
+              width={200}
+              height={250}
               className="w-full h-64 object-cover rounded-lg"
             />
             <div className="absolute inset-0 flex items-center justify-center">
